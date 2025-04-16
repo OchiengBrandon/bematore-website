@@ -7,8 +7,8 @@
 <!-- Solutions Header Section -->
 <section class="hero">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
                 <h1>AI-Powered Mental Health Solutions</h1>
                 <p class="lead">Explore our innovative mental health solutions designed for Africa and the world</p>
             </div>
@@ -17,31 +17,23 @@
 </section>
 
 <!-- Solutions Filter and Search Section -->
-<section class="py-5 bg-light">
+<section>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <form method="get" action="{% url 'solutions:solution_list' %}" class="mb-4">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <input type="text" name="search" class="form-control" placeholder="Search solutions..." value="{{ search_query|default:'' }}">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <select name="platform" class="form-select" onchange="this.form.submit()">
-                                <option value="all" {% if not current_platform %}selected{% endif %}>All Platforms</option>
-                                {% for value, label in platform_choices %}
-                                <option value="{{ value }}" {% if current_platform == value %}selected{% endif %}>{{ label }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{% url 'solutions:solution_list' %}" class="btn btn-outline-primary w-100">Reset</a>
-                        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <form method="get" action="{% url 'solutions:solution_list' %}" class="d-flex">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search solutions..." value="{{ search_query|default:'' }}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <select name="platform" class="form-select" onchange="this.form.submit()">
+                            <option value="all" {% if not current_platform %}selected{% endif %}>All Platforms</option>
+                            {% for value, label in platform_choices %}
+                            <option value="{{ value }}" {% if current_platform == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        <a href="{% url 'solutions:solution_list' %}" class="btn btn-outline-primary">Reset</a>
                     </div>
                 </form>
             </div>
