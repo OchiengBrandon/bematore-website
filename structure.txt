@@ -1,0 +1,34 @@
+bematore/
+├── bematore/              # Project root
+│   ├── __init__.py
+│   ├── settings/         # Split settings
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── development.py
+│   │   └── production.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+├── apps/                 # All Django apps
+│   ├── core/            # Core functionality
+│   ├── accounts/        # User management
+│   ├── solutions/       # Product solutions
+│   ├── blog/           # Blog/News
+│   └── api/            # API endpoints
+├── static/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── admin/          # Custom admin styles
+├── templates/
+│   ├── base.html
+│   ├── admin/
+│   └── includes/
+├── media/              # User uploaded content
+├── docs/              # Project documentation
+├── requirements/
+│   ├── base.txt
+│   ├── development.txt
+│   └── production.txt
+├── manage.py
+└── .env               # Environment variables

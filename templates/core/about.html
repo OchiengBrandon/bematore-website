@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, #00a0ff 0%, #0071e3 100%);">
+    <div class="container text-center">
+        <h1>About Bematore</h1>
+        <p class="lead">{{ site_settings.tagline|default:'AI-powered. Culturally Aware. Clinically Grounded.' }}</p>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2>Our Mission</h2>
+                <p class="lead">To make quality mental health support accessible to everyone in Africa and beyond.</p>
+                <p>At Bematore, we believe that mental health care is a fundamental right. Our mission is to bridge the gap in mental health services by leveraging artificial intelligence to provide culturally sensitive, clinically sound support that's available whenever and wherever people need it.</p>
+                <p>We're particularly focused on addressing the unique mental health challenges faced in African contexts, where stigma, limited resources, and cultural barriers often prevent people from seeking help.</p>
+            </div>
+            <div class="col-lg-6">
+                <h2>Our Vision</h2>
+                <p class="lead">A world where everyone has the mental health support they need to thrive.</p>
+                <p>We envision a future where mental health support is as normalized and accessible as physical health care. Where cultural contexts are respected and integrated into treatment approaches. Where technology augments human care to reach more people effectively.</p>
+                <p>By combining AI innovation with clinical expertise and cultural understanding, we aim to create a new paradigm for mental health support that works for diverse populations worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                <img src="{% static 'img/our-story.jpg' %}" alt="Bematore team" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <h2>Our Story</h2>
+                <p>Bematore was founded in 2023 by a team of clinicians, technologists, and mental health advocates who recognized the growing mental health crisis in Africa and the inadequacy of existing resources to address it.</p>
+                <p>Our founders saw firsthand how cultural misunderstandings, lack of accessibility, and stigma prevented people from seeking help. They also recognized that while AI was revolutionizing many industries, existing mental health technologies often failed to account for cultural differences and contextual factors crucial in effective mental health support.</p>
+                <p>Driven by this insight, they set out to build an AI system specifically designed to understand African cultural contexts while maintaining clinical rigor. After years of research, development, and testing with diverse user groups, Bematore was born - a mental health platform that combines the accessibility of AI with cultural sensitivity and clinical expertise.</p>
+                <p>Today, we're proud to serve users across multiple countries, continually learning and improving to provide better support for mental wellbeing worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach Section -->
+<section class="bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Our Approach</h2>
+            <p class="lead">The Bematore difference is in how we combine technology, culture, and clinical expertise</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="icon-wrapper text-center mb-3">
+                            <i class="fas fa-brain fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="text-center">AI Innovation</h3>
+                        <p>Our natural language processing models have been trained specifically to understand mental health concerns and respond with empathy and effectiveness.</p>
+                        <p>Unlike generic AI systems, Bematore's technology recognizes emotional cues, detects risk factors, and adapts its approach based on each user's unique situation and cultural background.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="icon-wrapper text-center mb-3">
+                            <i class="fas fa-globe-africa fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="text-center">Cultural Awareness</h3>
+                        <p>We've developed our system with deep understanding of diverse cultural perspectives on mental health, particularly those from African contexts.</p>
+                        <p>This cultural grounding allows Bematore to provide support that resonates with users' lived experiences, addressing challenges in ways that make sense within their worldview and community context.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="icon-wrapper text-center mb-3">
+                            <i class="fas fa-heartbeat fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="text-center">Clinical Excellence</h3>
+                        <p>All of our approaches are grounded in evidence-based therapeutic techniques, developed in collaboration with experienced mental health professionals.</p>
+                        <p>We combine multiple therapeutic modalities including Cognitive Behavioral Therapy, Acceptance and Commitment Therapy, and mindfulness practices, adapting them to individual needs and cultural contexts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Our Values</h2>
+            <p class="lead">The principles that guide everything we do</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-handshake text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Accessibility</h4>
+                        <p>We believe everyone deserves quality mental health support, regardless of location, income, or background. We're committed to making our services affordable and available to all.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-shield-alt text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Privacy</h4>
+                        <p>We maintain the highest standards of data protection and user confidentiality. Your personal information and conversations are secure and private.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-users text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Inclusivity</h4>
+                        <p>We design our platform to be inclusive of diverse identities, backgrounds, and experiences, ensuring everyone feels respected and understood.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-book-medical text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Evidence-Based</h4>
+                        <p>Our approaches are grounded in scientific research and clinical best practices, continuously evolved based on user outcomes and the latest research.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-hands-helping text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Empowerment</h4>
+                        <p>We aim to empower users with knowledge, skills, and support to take charge of their mental wellbeing and build resilience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-lightbulb text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Innovation</h4>
+                        <p>We continuously push the boundaries of what's possible with AI in mental health, always seeking better ways to serve our users.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section Preview -->
+<section class="bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Our Team</h2>
+            <p class="lead">Meet the experts behind Bematore</p>
+        </div>
+        <div class="row">
+            {% for member in team_members|slice:":4" %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    {% if member.photo %}
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="card-img-top">
+                    {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-user fa-3x"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ member.name }}</h5>
+                        <p class="card-text text-muted">{{ member.position }}</p>
+                        <p class="card-text small">{{ member.bio|truncatewords:20 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'core:team' %}" class="btn btn-primary">Meet Our Full Team</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-primary text-white">
+    <div class="container text-center">
+        <h2>Join the Bematore Community</h2>
+        <p class="lead mb-4">Be part of our mission to revolutionize mental health support</p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                    <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg">Contact Us</a>
+                    <a href="#" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#newsletterModal">Subscribe to Updates</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

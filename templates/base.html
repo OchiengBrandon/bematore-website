@@ -1,0 +1,1148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="{{ site_settings.meta_description|default:'AI-powered mental health platform built for Africa and the world' }}">
+    <meta name="keywords" content="{{ site_settings.meta_keywords|default:'mental health, AI, wellness, healthcare' }}">
+    
+    <!-- Title -->
+    <title>{% block title %}{{ site_settings.site_name|default:'Bematore' }}{% endblock %} | AI Mental Health Platform</title>
+    
+    <!-- Favicon -->
+    {% if site_settings.favicon %}
+    <link rel="icon" href="{{ site_settings.favicon.url }}" type="image/x-icon">
+    {% else %}
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    {% endif %}
+    
+    <!-- Apple-specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Custom CSS for Apple-like design -->
+    <style>
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #86868b;
+            --dark-color: #1d1d1f;
+            --light-color: #f5f5f7;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --transition: all 0.3s ease;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 1rem;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+        }
+        
+        .navbar .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+        }
+        
+        .navbar .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .navbar .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        /* Buttons */
+        .btn {
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #005bbf;
+            border-color: #005bbf;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Cards */
+        .card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Forms */
+        .form-control {
+            border-radius: 10px;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 113, 227, 0.25);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        footer a {
+            color: #a1a1a6;
+            transition: var(--transition);
+        }
+        
+        footer a:hover {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0071e3 0%, #00a0ff 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem;
+        }
+        
+        /* Accessibility */
+        .accessibility-tools {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+        }
+        
+        .accessibility-btn {
+            background-color: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .accessibility-menu {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            width: 250px;
+            display: none;
+        }
+        
+        .accessibility-menu.active {
+            display: block;
+        }
+        
+        .accessibility-menu button {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .accessibility-menu button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* High contrast mode */
+        body.high-contrast {
+            background-color: black !important;
+            color: white !important;
+        }
+        
+        body.high-contrast .navbar,
+        body.high-contrast .card,
+        body.high-contrast .accessibility-menu,
+        body.high-contrast .modal-content {
+            background-color: black !important;
+            color: white !important;
+        }
+        
+        body.high-contrast a,
+        body.high-contrast .navbar .nav-link {
+            color: yellow !important;
+        }
+        
+        body.high-contrast .btn {
+            background-color: yellow !important;
+            color: black !important;
+            border-color: yellow !important;
+        }
+        
+        /* Font size adjustments */
+        body.larger-text {
+            font-size: 120% !important;
+        }
+        
+        body.largest-text {
+            font-size: 150% !important;
+        }
+
+        /* Animation Reduction */
+        body.reduce-motion *,
+        body.reduce-motion .card:hover {
+            animation: none !important;
+            transition: none !important;
+            transform: none !important;
+        }
+        
+        /* Cookie banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            display: none;
+        }
+        
+        .cookie-banner.active {
+            display: block;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero {
+                padding: 5rem 1rem;
+            }
+            
+            .accessibility-menu {
+                width: 220px;
+            }
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 1rem;
+            z-index: 9999;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .skip-link:focus {
+            left: 1rem;
+        }
+
+        /* Focus states for accessibility */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* Cookie preferences modal */
+        #cookiePreferencesModal .form-check {
+            margin-bottom: 1rem;
+        }
+        
+        /* Accessibility statement modal */
+        #accessibilityStatement {
+            line-height: 1.6;
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'core:home' %}">
+                {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_name }} Logo">
+                {% else %}
+                <span class="h4 mb-0">{{ site_settings.site_name|default:'Bematore' }}</span>
+                {% endif %}
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solutions">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#technology">Technology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'team' %}active{% endif %}" href="{% url 'core:team' %}">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'partners' %}active{% endif %}" href="{% url 'core:partners' %}">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'faq' %}active{% endif %}" href="{% url 'core:faq' %}">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'testimonials' %}active{% endif %}" href="{% url 'core:testimonials' %}">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'core:contact' %}">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-2">
+                    <form class="d-flex" action="{% url 'core:search' %}" method="get">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="query" placeholder="Search..." aria-label="Search" value="{{ request.GET.query|default:'' }}">
+                            <button class="btn btn-outline-primary" type="submit" aria-label="Search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main id="main-content">
+        {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>{{ site_settings.site_name|default:'Bematore' }}</h5>
+                    <p>{{ site_settings.tagline|default:'AI-powered. Culturally Aware. Clinically Grounded.' }}</p>
+                    <p>{{ site_settings.site_description|default:'Your AI-driven mental health partner built for Africa and the world.' }}</p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'core:home' %}">Home</a></li>
+                        <li><a href="{% url 'core:about' %}">About</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#technology">Technology</a></li>
+                        <li><a href="{% url 'core:team' %}">Team</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'core:faq' %}">FAQ</a></li>
+                        <li><a href="{% url 'core:testimonials' %}">Testimonials</a></li>
+                        <li><a href="{% url 'core:partners' %}">Partners</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsOfUseModal">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Download the App</h5>
+                    <div class="mb-3">
+                        {% if site_settings.app_store_link %}
+                        <a href="{{ site_settings.app_store_link }}" class="me-2" aria-label="Download on App Store">
+                            <img src="{% static 'img/app-store-badge.svg' %}" alt="App Store" height="40">
+                        </a>
+                        {% endif %}
+                        {% if site_settings.play_store_link %}
+                        <a href="{{ site_settings.play_store_link }}" aria-label="Get it on Google Play">
+                            <img src="{% static 'img/play-store-badge.svg' %}" alt="Play Store" height="40">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        {% if site_settings.social_facebook %}
+                        <a href="{{ site_settings.social_facebook }}" aria-label="Facebook" class="me-2">
+                            <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.social_twitter %}
+                        <a href="{{ site_settings.social_twitter }}" aria-label="Twitter" class="me-2">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.social_instagram %}
+                        <a href="{{ site_settings.social_instagram }}" aria-label="Instagram" class="me-2">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.social_linkedin %}
+                        <a href="{{ site_settings.social_linkedin }}" aria-label="LinkedIn" class="me-2">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.social_tiktok %}
+                        <a href="{{ site_settings.social_tiktok }}" aria-label="TikTok">
+                            <i class="fab fa-tiktok fa-lg"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; {% now "Y" %} {{ site_settings.site_name|default:'Bematore HealthTech Limited' }}. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>
+                        <small>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#accessibilityStatementModal">Accessibility Statement</a> |
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#cookiePreferencesModal">Cookie Preferences</a>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Newsletter subscription modal -->
+    <div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newsletterModalLabel">Subscribe to Our Newsletter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'core:newsletter_subscribe' %}" id="newsletterForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="newsletter-email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="newsletter-email" name="email" required>
+                            <div class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newsletter-name" class="form-label">Name (optional)</label>
+                            <input type="text" class="form-control" id="newsletter-name" name="name">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="newsletter-consent" name="consent" required>
+                            <label class="form-check-label" for="newsletter-consent">I agree to receive newsletters and marketing communications.</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <small class="text-muted">You can unsubscribe at any time by clicking the link in the footer of our emails.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Preferences Modal -->
+    <div class="modal fade" id="cookiePreferencesModal" tabindex="-1" aria-labelledby="cookiePreferencesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cookiePreferencesModalLabel">Cookie Preferences</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>We use cookies to enhance your experience on our website. You can choose which types of cookies you allow.</p>
+                    <form id="cookiePreferencesForm">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="necessaryCookies" checked disabled>
+                            <label class="form-check-label" for="necessaryCookies">
+                                <strong>Necessary Cookies</strong>
+                                <p class="mb-0">These cookies are essential for the website to function and cannot be disabled.</p>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="analyticsCookies">
+                            <label class="form-check-label" for="analyticsCookies">
+                                <strong>Analytics Cookies</strong>
+                                <p class="mb-0">These cookies help us understand how visitors interact with our website.</p>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="marketingCookies">
+                            <label class="form-check-label" for="marketingCookies">
+                                <strong>Marketing Cookies</strong>
+                                <p class="mb-0">These cookies are used to track visitors across websites to display relevant advertisements.</p>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="preferencesCookies">
+                            <label class="form-check-label" for="preferencesCookies">
+                                <strong>Preferences Cookies</strong>
+                                <p class="mb-0">These cookies enable personalized features and functionality on our website.</p>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="rejectAllCookies">Reject All</button>
+                    <button type="button" class="btn btn-primary" id="acceptSelectedCookies">Save Preferences</button>
+                    <button type="button" class="btn btn-success" id="acceptAllCookies">Accept All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility Statement Modal -->
+    <div class="modal fade" id="accessibilityStatementModal" tabindex="-1" aria-labelledby="accessibilityStatementModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accessibilityStatementModalLabel">Accessibility Statement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="accessibilityStatement">
+                    <h6>Our Commitment</h6>
+                    <p>{{ site_settings.site_name|default:'Bematore' }} is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.</p>
+                    
+                    <h6>Accessibility Features</h6>
+                    <p>Our website offers several accessibility features:</p>
+                    <ul>
+                        <li>High contrast mode</li>
+                        <li>Text size adjustment</li>
+                        <li>Animation reduction</li>
+                        <li>Screen reader compatibility</li>
+                        <li>Keyboard navigation</li>
+                    </ul>
+                    
+                    <h6>How to Use Our Accessibility Tools</h6>
+                    <p>You can access our accessibility tools by clicking the accessibility button located at the bottom right corner of every page.</p>
+                    
+                    <h6>Standards and Compliance</h6>
+                    <p>We strive to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards.</p>
+                    
+                    <h6>Feedback</h6>
+                    <p>If you encounter any accessibility barriers on our website, please contact us through our <a href="{% url 'core:contact' %}">Contact Page</a>. We value your feedback and are committed to making continuous improvements.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyPolicyModal" tabindex="-1" aria-labelledby="privacyPolicyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="privacyPolicyModalLabel">Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This is a placeholder for the Privacy Policy content. The actual content should be added by the site administrator.</p>
+                    <p>Last updated: {% now "F j, Y" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Use Modal -->
+    <div class="modal fade" id="termsOfUseModal" tabindex="-1" aria-labelledby="termsOfUseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsOfUseModalLabel">Terms of Use</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This is a placeholder for the Terms of Use content. The actual content should be added by the site administrator.</p>
+                    <p>Last updated: {% now "F j, Y" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p class="mb-2 mb-md-0">
+                        We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button class="btn btn-sm btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#cookiePreferencesModal">Preferences</button>
+                    <button class="btn btn-sm btn-primary" id="acceptAllCookiesBanner">Accept All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility tools -->
+    <div class="accessibility-tools">
+        <button class="accessibility-btn" id="accessibilityToggle" aria-label="Accessibility options" aria-expanded="false">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div class="accessibility-menu" id="accessibilityMenu">
+            <h5>Accessibility Options</h5>
+            <button id="toggleContrast">
+                <i class="fas fa-adjust me-2"></i> High Contrast
+            </button>
+            <button id="increaseText">
+                <i class="fas fa-search-plus me-2"></i> Larger Text
+            </button>
+            <button id="decreaseText">
+                <i class="fas fa-search-minus me-2"></i> Normal Text
+            </button>
+            <button id="reduceMotion">
+                <i class="fas fa-running me-2"></i> Reduce Animations
+            </button>
+            <button id="readPage">
+                <i class="fas fa-volume-up me-2"></i> Read Page
+            </button>
+            <button id="pauseReading">
+                <i class="fas fa-pause me-2"></i> Pause Reading
+            </button>
+            <button id="stopReading">
+                <i class="fas fa-stop me-2"></i> Stop Reading
+            </button>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="btn btn-primary position-fixed rounded-circle" style="bottom: 80px; right: 20px; width: 40px; height: 40px; display: none; z-index: 999;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Core JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Bootstrap components
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            // Accessibility toggle
+            const accessibilityToggle = document.getElementById('accessibilityToggle');
+            const accessibilityMenu = document.getElementById('accessibilityMenu');
+            
+            accessibilityToggle.addEventListener('click', function() {
+                accessibilityMenu.classList.toggle('active');
+                const expanded = accessibilityMenu.classList.contains('active');
+                accessibilityToggle.setAttribute('aria-expanded', expanded);
+            });
+            
+            // High contrast mode
+            const toggleContrast = document.getElementById('toggleContrast');
+            toggleContrast.addEventListener('click', function() {
+                document.body.classList.toggle('high-contrast');
+                localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+                updateAccessibilityStatus();
+            });
+            
+            // Text size adjustments
+            const increaseText = document.getElementById('increaseText');
+            const decreaseText = document.getElementById('decreaseText');
+            
+            increaseText.addEventListener('click', function() {
+                if (document.body.classList.contains('largest-text')) {
+                    return;
+                } else if (document.body.classList.contains('larger-text')) {
+                    document.body.classList.remove('larger-text');
+                    document.body.classList.add('largest-text');
+                    localStorage.setItem('textSize', 'largest');
+                } else {
+                    document.body.classList.add('larger-text');
+                    localStorage.setItem('textSize', 'larger');
+                }
+                updateAccessibilityStatus();
+            });
+            
+            decreaseText.addEventListener('click', function() {
+                document.body.classList.remove('larger-text', 'largest-text');
+                localStorage.setItem('textSize', 'normal');
+                updateAccessibilityStatus();
+            });
+            
+            // Reduce motion
+            const reduceMotion = document.getElementById('reduceMotion');
+            reduceMotion.addEventListener('click', function() {
+                document.body.classList.toggle('reduce-motion');
+                localStorage.setItem('reduceMotion', document.body.classList.contains('reduce-motion'));
+                updateAccessibilityStatus();
+            });
+            
+            // Screen reader functionality
+            const readPage = document.getElementById('readPage');
+            const pauseReading = document.getElementById('pauseReading');
+            const stopReading = document.getElementById('stopReading');
+            let speechSynthesis = window.speechSynthesis;
+            let currentUtterance = null;
+            
+            readPage.addEventListener('click', function() {
+                if (!speechSynthesis) {
+                    alert('Your browser does not support text-to-speech functionality.');
+                    return;
+                }
+                
+                if (currentUtterance) {
+                    speechSynthesis.cancel();
+                }
+                
+                const mainContent = document.getElementById('main-content').textContent.trim();
+                currentUtterance = new SpeechSynthesisUtterance(mainContent);
+                
+                // Apply voice preferences if set
+                if (localStorage.getItem('voicePreference')) {
+                    const voices = speechSynthesis.getVoices();
+                    const preferredVoice = voices.find(v => v.name === localStorage.getItem('voicePreference'));
+                    if (preferredVoice) {
+                        currentUtterance.voice = preferredVoice;
+                    }
+                }
+                
+                // Apply rate and pitch preferences if set
+                if (localStorage.getItem('speechRate')) {
+                    currentUtterance.rate = parseFloat(localStorage.getItem('speechRate'));
+                }
+                if (localStorage.getItem('speechPitch')) {
+                    currentUtterance.pitch = parseFloat(localStorage.getItem('speechPitch'));
+                }
+                
+                speechSynthesis.speak(currentUtterance);
+            });
+            
+            pauseReading.addEventListener('click', function() {
+                if (speechSynthesis && speechSynthesis.speaking) {
+                    if (speechSynthesis.paused) {
+                        speechSynthesis.resume();
+                        pauseReading.innerHTML = '<i class="fas fa-pause me-2"></i> Pause Reading';
+                    } else {
+                        speechSynthesis.pause();
+                        pauseReading.innerHTML = '<i class="fas fa-play me-2"></i> Resume Reading';
+                    }
+                }
+            });
+            
+            stopReading.addEventListener('click', function() {
+                if (speechSynthesis) {
+                    speechSynthesis.cancel();
+                    currentUtterance = null;
+                    pauseReading.innerHTML = '<i class="fas fa-pause me-2"></i> Pause Reading';
+                }
+            });
+            
+            // Cookie banner
+            const cookieBanner = document.getElementById('cookieBanner');
+            const acceptAllCookiesBanner = document.getElementById('acceptAllCookiesBanner');
+            const acceptAllCookies = document.getElementById('acceptAllCookies');
+            const acceptSelectedCookies = document.getElementById('acceptSelectedCookies');
+            const rejectAllCookies = document.getElementById('rejectAllCookies');
+            
+            // Check if cookie preferences are already set
+            if (!localStorage.getItem('cookiePreferences')) {
+                cookieBanner.classList.add('active');
+            } else {
+                // Apply saved cookie preferences
+                applyCookiePreferences(JSON.parse(localStorage.getItem('cookiePreferences')));
+            }
+            
+            // Handle cookie banner accept all button
+            acceptAllCookiesBanner.addEventListener('click', function() {
+                const allCookies = {
+                    necessary: true,
+                    analytics: true,
+                    marketing: true,
+                    preferences: true
+                };
+                localStorage.setItem('cookiePreferences', JSON.stringify(allCookies));
+                cookieBanner.classList.remove('active');
+                applyCookiePreferences(allCookies);
+                updateCookieFormCheckboxes(allCookies);
+            });
+            
+            // Handle cookie modal accept all button
+            acceptAllCookies.addEventListener('click', function() {
+                const allCookies = {
+                    necessary: true,
+                    analytics: true,
+                    marketing: true,
+                    preferences: true
+                };
+                localStorage.setItem('cookiePreferences', JSON.stringify(allCookies));
+                cookieBanner.classList.remove('active');
+                applyCookiePreferences(allCookies);
+                updateCookieFormCheckboxes(allCookies);
+                bootstrap.Modal.getInstance(document.getElementById('cookiePreferencesModal')).hide();
+            });
+            
+            // Handle cookie modal save preferences button
+            acceptSelectedCookies.addEventListener('click', function() {
+                const selectedCookies = {
+                    necessary: true, // Always required
+                    analytics: document.getElementById('analyticsCookies').checked,
+                    marketing: document.getElementById('marketingCookies').checked,
+                    preferences: document.getElementById('preferencesCookies').checked
+                };
+                localStorage.setItem('cookiePreferences', JSON.stringify(selectedCookies));
+                cookieBanner.classList.remove('active');
+                applyCookiePreferences(selectedCookies);
+                bootstrap.Modal.getInstance(document.getElementById('cookiePreferencesModal')).hide();
+            });
+            
+            // Handle cookie modal reject all button
+            rejectAllCookies.addEventListener('click', function() {
+                const essentialOnly = {
+                    necessary: true,
+                    analytics: false,
+                    marketing: false,
+                    preferences: false
+                };
+                localStorage.setItem('cookiePreferences', JSON.stringify(essentialOnly));
+                cookieBanner.classList.remove('active');
+                applyCookiePreferences(essentialOnly);
+                updateCookieFormCheckboxes(essentialOnly);
+                bootstrap.Modal.getInstance(document.getElementById('cookiePreferencesModal')).hide();
+            });
+            
+            // Update cookie preference form checkboxes when the modal is opened
+            document.getElementById('cookiePreferencesModal').addEventListener('show.bs.modal', function() {
+                const savedPreferences = localStorage.getItem('cookiePreferences') 
+                    ? JSON.parse(localStorage.getItem('cookiePreferences')) 
+                    : { necessary: true, analytics: false, marketing: false, preferences: false };
+                updateCookieFormCheckboxes(savedPreferences);
+            });
+            
+            // Function to update cookie form checkboxes based on saved preferences
+            function updateCookieFormCheckboxes(preferences) {
+                document.getElementById('analyticsCookies').checked = preferences.analytics;
+                document.getElementById('marketingCookies').checked = preferences.marketing;
+                document.getElementById('preferencesCookies').checked = preferences.preferences;
+            }
+            
+            // Function to apply cookie preferences
+            function applyCookiePreferences(preferences) {
+                // This is where you would implement the logic to enable/disable tracking based on preferences
+                // For example, only initialize Google Analytics if preferences.analytics is true
+                if (preferences.analytics && window.gtag && {{ site_settings.google_analytics_id|yesno:"true,false" }}) {
+                    // Code to enable analytics
+                    console.log('Analytics cookies enabled');
+                }
+                
+                if (preferences.marketing) {
+                    // Code to enable marketing cookies
+                    console.log('Marketing cookies enabled');
+                }
+                
+                if (preferences.preferences) {
+                    // Code to enable preference cookies
+                    console.log('Preference cookies enabled');
+                }
+            }
+            
+            // Load user preferences from localStorage
+            if (localStorage.getItem('highContrast') === 'true') {
+                document.body.classList.add('high-contrast');
+            }
+            
+            const textSize = localStorage.getItem('textSize');
+            if (textSize === 'larger') {
+                document.body.classList.add('larger-text');
+            } else if (textSize === 'largest') {
+                document.body.classList.add('largest-text');
+            }
+            
+            if (localStorage.getItem('reduceMotion') === 'true') {
+                document.body.classList.add('reduce-motion');
+            }
+            
+            // Update accessibility status indicators
+            function updateAccessibilityStatus() {
+                const isHighContrast = document.body.classList.contains('high-contrast');
+                const hasLargerText = document.body.classList.contains('larger-text') || document.body.classList.contains('largest-text');
+                const hasReducedMotion = document.body.classList.contains('reduce-motion');
+                
+                toggleContrast.innerHTML = isHighContrast 
+                    ? '<i class="fas fa-adjust me-2"></i> <strong>High Contrast: ON</strong>' 
+                    : '<i class="fas fa-adjust me-2"></i> High Contrast';
+                
+                if (document.body.classList.contains('largest-text')) {
+                    increaseText.innerHTML = '<i class="fas fa-search-plus me-2"></i> <strong>Largest Text: ON</strong>';
+                    decreaseText.innerHTML = '<i class="fas fa-search-minus me-2"></i> <strong>Normal Text</strong>';
+                } else if (document.body.classList.contains('larger-text')) {
+                    increaseText.innerHTML = '<i class="fas fa-search-plus me-2"></i> <strong>Larger Text: ON</strong>';
+                    decreaseText.innerHTML = '<i class="fas fa-search-minus me-2"></i> <strong>Normal Text</strong>';
+                } else {
+                    increaseText.innerHTML = '<i class="fas fa-search-plus me-2"></i> Larger Text';
+                    decreaseText.innerHTML = '<i class="fas fa-search-minus me-2"></i> Normal Text';
+                }
+                
+                reduceMotion.innerHTML = hasReducedMotion 
+                    ? '<i class="fas fa-running me-2"></i> <strong>Reduced Motion: ON</strong>' 
+                    : '<i class="fas fa-running me-2"></i> Reduce Animations';
+            }
+            
+            // Initial update of accessibility status indicators
+            updateAccessibilityStatus();
+            
+            // Auto-hide accessibility menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!accessibilityToggle.contains(event.target) && !accessibilityMenu.contains(event.target)) {
+                    accessibilityMenu.classList.remove('active');
+                    accessibilityToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // AJAX form submission for newsletter
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // Clear form
+                            newsletterForm.reset();
+                            // Close modal
+                            const modal = bootstrap.Modal.getInstance(document.getElementById('newsletterModal'));
+                            modal.hide();
+                            // Show success message
+                            const alertDiv = document.createElement('div');
+                            alertDiv.className = 'alert alert-success alert-dismissible fade show';
+                            alertDiv.role = 'alert';
+                            alertDiv.innerHTML = `
+                                ${data.message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            `;
+                            document.querySelector('#main-content').prepend(alertDiv);
+                            
+                            // Auto-dismiss after 5 seconds
+                            setTimeout(() => {
+                                alertDiv.classList.remove('show');
+                                setTimeout(() => alertDiv.remove(), 500);
+                            }, 5000);
+                        } else {
+                            // Show error message in the modal
+                            let errorMsgElement = document.querySelector('#newsletterModal .error-message');
+                            if (!errorMsgElement) {
+                                errorMsgElement = document.createElement('div');
+                                errorMsgElement.className = 'alert alert-danger error-message';
+                                document.querySelector('#newsletterModal .modal-body').prepend(errorMsgElement);
+                            }
+                            errorMsgElement.textContent = data.message;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Show generic error message
+                        let errorMsgElement = document.querySelector('#newsletterModal .error-message');
+                        if (!errorMsgElement) {
+                            errorMsgElement = document.createElement('div');
+                            errorMsgElement.className = 'alert alert-danger error-message';
+                            document.querySelector('#newsletterModal .modal-body').prepend(errorMsgElement);
+                        }
+                        errorMsgElement.textContent = 'There was an error submitting the form. Please try again.';
+                    });
+                });
+            }
+            
+            // Back to top button functionality
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'flex';
+                    backToTopButton.style.justifyContent = 'center';
+                    backToTopButton.style.alignItems = 'center';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Handle modal close behavior
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.addEventListener('hidden.bs.modal', function() {
+                    // Remove any error messages when modal is closed
+                    const errorMessages = modal.querySelectorAll('.error-message');
+                    errorMessages.forEach(el => el.remove());
+                });
+            });
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Google Analytics (respecting cookie preferences) -->
+    {% if site_settings.google_analytics_id %}
+    <script>
+        // Only load Google Analytics if analytics cookies are accepted
+        if (localStorage.getItem('cookiePreferences')) {
+            const preferences = JSON.parse(localStorage.getItem('cookiePreferences'));
+            if (preferences.analytics) {
+                (function() {
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.src = 'https://www.googletagmanager.com/gtag/js?id={{ site_settings.google_analytics_id }}';
+                    document.head.appendChild(script);
+                    
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '{{ site_settings.google_analytics_id }}');
+                })();
+            }
+        }
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,392 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+                <h1>{{ site_settings.headline|default:'AI-Powered Mental Health Support' }}</h1>
+                <p class="lead mb-4">{{ site_settings.tagline|default:'Culturally Aware. Clinically Grounded.' }}</p>
+                <p class="mb-5">{{ site_settings.site_description|default:'Bematore brings accessible mental health support to everyone through AI-powered technology that understands African contexts and global wellness needs.' }}</p>
+                <div class="d-flex justify-content-center justify-content-lg-start">
+                    <a href="#get-started" class="btn btn-light btn-lg me-3">Get Started</a>
+                    <a href="{% url 'core:about' %}" class="btn btn-outline-light btn-lg">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'img/hero-image.png' %}" alt="Mental health support illustration" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="get-started" class="bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>How Bematore Works</h2>
+            <p class="lead">Simple, effective mental health support that fits into your life</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-comments fa-3x text-primary"></i>
+                        </div>
+                        <h3>Talk Anytime</h3>
+                        <p>Connect with our AI assistant 24/7 for immediate support, no appointment needed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-brain fa-3x text-primary"></i>
+                        </div>
+                        <h3>Personalized Support</h3>
+                        <p>Receive guidance that's tailored to your unique situation and cultural context.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-user-md fa-3x text-primary"></i>
+                        </div>
+                        <h3>Clinical Expertise</h3>
+                        <p>All our AI responses are grounded in evidence-based therapeutic approaches.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solutions Section -->
+<section id="solutions" class="bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Our Solutions</h2>
+            <p class="lead">Comprehensive mental health support for individuals and organizations</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3><i class="fas fa-mobile-alt text-primary me-2"></i> Bematore Personal</h3>
+                        <p>Our mobile app gives you access to mental health support whenever you need it.</p>
+                        <ul>
+                            <li>24/7 AI therapy assistant</li>
+                            <li>Mood tracking and journaling</li>
+                            <li>Guided meditation and exercises</li>
+                            <li>Personalized wellness plans</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary mt-3">Download the App</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3><i class="fas fa-building text-primary me-2"></i> Bematore Enterprise</h3>
+                        <p>Support your employees' mental health with our corporate wellness solution.</p>
+                        <ul>
+                            <li>Anonymous employee support</li>
+                            <li>Wellness analytics dashboard</li>
+                            <li>Custom integration options</li>
+                            <li>Training and workshops</li>
+                        </ul>
+                        <a href="{% url 'core:contact' %}" class="btn btn-primary mt-3">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Section -->
+<section id="technology" class="bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{% static 'img/technology-illustration.png' %}" alt="AI Technology" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2>Our Technology</h2>
+                <p class="lead">Advanced AI built specifically for mental health</p>
+                <p>Bematore combines natural language processing, machine learning, and therapeutic expertise to create an AI system that truly understands mental health challenges.</p>
+                <div class="mt-4">
+                    <div class="d-flex mb-3">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-check-circle text-success"></i>
+                        </div>
+                        <div>
+                            <h5>Culturally Adaptive</h5>
+                            <p>Our AI understands cultural nuances and contextual differences across Africa and beyond.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-check-circle text-success"></i>
+                        </div>
+                        <div>
+                            <h5>Clinically Validated</h5>
+                            <p>Developed in collaboration with mental health professionals using evidence-based approaches.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-check-circle text-success"></i>
+                        </div>
+                        <div>
+                            <h5>Privacy Focused</h5>
+                            <p>Your data is secure and private, with state-of-the-art encryption and anonymization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>What Our Users Say</h2>
+            <p class="lead">Real experiences from people using Bematore</p>
+        </div>
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= testimonial.rating %}
+                                <i class="fas fa-star text-warning"></i>
+                                {% else %}
+                                <i class="far fa-star text-warning"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="card-text">{{ testimonial.content }}</p>
+                        <div class="d-flex align-items-center mt-3">
+                            {% if testimonial.avatar %}
+                            <img src="{{ testimonial.avatar.url }}" alt="{{ testimonial.name }}" class="rounded-circle me-3" width="50" height="50">
+                            {% else %}
+                            <div class="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                {{ testimonial.name|make_list|first|upper }}
+                            </div>
+                            {% endif %}
+                            <div>
+                                <h5 class="mb-0">{{ testimonial.name }}</h5>
+                                <small class="text-muted">{{ testimonial.location }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'core:testimonials' %}" class="btn btn-outline-primary">View All Testimonials</a>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section Preview -->
+<section class="bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Meet Our Team</h2>
+            <p class="lead">The experts behind Bematore</p>
+        </div>
+        <div class="row">
+            {% for member in team_members %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    {% if member.photo %}
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="card-img-top">
+                    {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-user fa-3x"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ member.name }}</h5>
+                        <p class="card-text text-muted">{{ member.position }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'core:team' %}" class="btn btn-outline-primary">Meet the Full Team</a>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section Preview -->
+<section class="bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Our Partners</h2>
+            <p class="lead">Trusted by leading organizations</p>
+        </div>
+        <div class="row align-items-center">
+            {% for partner in partners %}
+            <div class="col-md-2 col-4 mb-4 text-center">
+                {% if partner.logo %}
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="img-fluid grayscale">
+                {% else %}
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <h6 class="mb-0">{{ partner.name }}</h6>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'core:partners' %}" class="btn btn-outline-primary">View All Partners</a>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section Preview -->
+<section class="bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Frequently Asked Questions</h2>
+            <p class="lead">Get answers to common questions about Bematore</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    {% for faq in faqs %}
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading{{ forloop.counter }}">
+                            <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
+                                {{ faq.question }}
+                            </button>
+                        </h3>
+                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                {{ faq.answer|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{% url 'core:faq' %}" class="btn btn-outline-primary">View All FAQs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-primary text-white">
+    <div class="container text-center">
+        <h2>Ready to get started?</h2>
+        <p class="lead mb-4">Join thousands of users already benefiting from Bematore's mental health support.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h4 class="text-primary">Subscribe to our newsletter</h4>
+                        <form method="post" action="{% url 'core:newsletter_subscribe' %}" id="homeNewsletterForm">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name (optional)">
+                            </div>
+                            <div class="mb-3 form-check text-start">
+                                <input type="checkbox" class="form-check-input" id="newsletter-consent-home" name="consent" required>
+                                <label class="form-check-label text-dark" for="newsletter-consent-home">I agree to receive newsletters and marketing communications.</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="#" class="btn btn-light me-2">
+                        <i class="fab fa-apple me-2"></i> App Store
+                    </a>
+                    <a href="#" class="btn btn-light">
+                        <i class="fab fa-google-play me-2"></i> Google Play
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Home page specific JavaScript here
+        
+        // AJAX form submission for newsletter (specific to home page)
+        const homeNewsletterForm = document.getElementById('homeNewsletterForm');
+        if (homeNewsletterForm) {
+            homeNewsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Clear form
+                        homeNewsletterForm.reset();
+                        
+                        // Show success message
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-success mt-3';
+                        alertDiv.textContent = data.message;
+                        homeNewsletterForm.parentNode.appendChild(alertDiv);
+                        
+                        // Auto-dismiss after 5 seconds
+                        setTimeout(() => {
+                            alertDiv.remove();
+                        }, 5000);
+                    } else {
+                        // Show error message
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-danger mt-3';
+                        alertDiv.textContent = data.message;
+                        homeNewsletterForm.parentNode.appendChild(alertDiv);
+                        
+                        // Auto-dismiss after 5 seconds
+                        setTimeout(() => {
+                            alertDiv.remove();
+                        }, 5000);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}
