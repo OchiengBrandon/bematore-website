@@ -3,15 +3,17 @@
 {% block title %}Our Partners{% endblock %}
 
 {% block content %}
-<section class="py-5 bg-light">
+<!-- Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, #00a0ff 0%, #0071e3 100%);">
+    <div class="container text-center">
+        <h1>Our Partners</h1>
+        <p class="lead">We collaborate with leading organizations to deliver innovative mental health solutions.</p>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h1>Our Partners</h1>
-                <p class="lead">We collaborate with leading organizations to deliver innovative mental health solutions.</p>
-            </div>
-        </div>
-        
         {% if partners_by_type %}
             {% for partner_type, partners in partners_by_type.items %}
             <div class="mb-5">

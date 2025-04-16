@@ -3,15 +3,17 @@
 {% block title %}Our Team{% endblock %}
 
 {% block content %}
-<section class="py-5 bg-light">
+<!-- Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, #00a0ff 0%, #0071e3 100%);">
+    <div class="container text-center">
+        <h1>Our Team</h1>
+        <p class="lead">Meet the dedicated professionals working to make mental healthcare accessible for everyone.</p>
+    </div>
+</section>
+
+<!-- Team Members Section -->
+<section class="bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h1>Our Team</h1>
-                <p class="lead">Meet the dedicated professionals working to make mental healthcare accessible for everyone.</p>
-            </div>
-        </div>
-        
         {% if team_members %}
         <div class="row g-4">
             {% for member in team_members %}
