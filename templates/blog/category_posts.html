@@ -1,0 +1,113 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ category.name }} - Posts{% endblock %}
+
+{% block blog_title %}{{ category.name }}{% endblock %}
+{% block blog_subtitle %}{{ category.description|default:"Posts in this category" }}{% endblock %}
+
+{% block blog_content %}
+    <!-- Category Information -->
+    {% if category.image %}
+    <div class="text-center mb-4">
+        <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-fluid rounded mb-3" style="max-height: 200px;">
+    </div>
+    {% endif %}
+    
+    <div class="mb-4">
+        <h2>Posts in {{ category.name }}</h2>
+        <p class="lead">{{ category.description }}</p>
+    </div>
+    
+    <!-- Post List -->
+    {% for post in posts %}
+        <div class="card mb-4 shadow-sm">
+            <div class="row g-0">
+                {% if post.thumbnail %}
+                <div class="col-md-4">
+                    <img src="{{ post.thumbnail.url }}" class="img-fluid rounded-start h-100 object-fit-cover" alt="{{ post.title }}">
+                </div>
+                {% endif %}
+                <div class="{% if post.thumbnail %}col-md-8{% else %}col-md-12{% endif %}">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="{% url 'blog:post_detail' post.slug %}" class="text-decoration-none">
+                                {{ post.title }}
+                            </a>
+                        </h3>
+                        <p class="card-text text-muted">
+                            <small>
+                                <i class="fas fa-calendar-alt"></i> {{ post.published_at|date:"M d, Y" }}
+                                | <i class="fas fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
+                                | <i class="fas fa-eye"></i> {{ post.views }} views
+                            </small>
+                        </p>
+                        <p class="card-text">{{ post.excerpt|truncatewords:30 }}</p>
+                        
+                        {% if post.tags.all %}
+                        <div class="mb-2">
+                            {% for tag in post.tags.all %}
+                            <a href="{% url 'blog:tag_detail' tag.slug %}" class="badge bg-secondary text-decoration-none">
+                                {{ tag.name }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-sm btn-outline-primary">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="alert alert-info">
+            No posts found in this category.
+        </div>
+    {% endfor %}
+    
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="First">
+                        &laquo; First
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        Previous
+                    </a>
+                </li>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        Next
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                        Last &raquo;
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+{% endblock %}

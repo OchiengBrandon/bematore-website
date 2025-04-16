@@ -386,7 +386,7 @@
                         <a class="nav-link" href="#solutions">Solutions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'blog:post_list' %}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'team' %}active{% endif %}" href="{% url 'core:team' %}">Team</a>

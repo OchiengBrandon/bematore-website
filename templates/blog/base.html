@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, #00a0ff 0%, #0071e3 100%);">
+    <div class="container text-center">
+        <h1>{% block blog_title %}Blog{% endblock %}</h1>
+        <p class="lead">{% block blog_subtitle %}Latest insights, news, and updates{% endblock %}</p>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Main content -->
+        <div class="col-lg-8">
+            {% block blog_content %}{% endblock %}
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            {% block sidebar %}
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Search</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="get" action="{% url 'blog:post_list' %}">
+                            <div class="input-group">
+                                <input type="text" name="query" class="form-control" placeholder="Search posts..." 
+                                       value="{{ request.GET.query|default:'' }}">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Categories</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for category in categories %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a href="{% url 'blog:category_detail' category.slug %}" class="text-decoration-none">
+                                    {{ category.name }}
+                                </a>
+                                <span class="badge bg-primary rounded-pill">{{ category.post_count }}</span>
+                            </li>
+                            {% empty %}
+                            <li class="list-group-item">No categories available</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Recent Posts</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for post in recent_posts %}
+                            <li class="list-group-item">
+                                <a href="{% url 'blog:post_detail' post.slug %}" class="text-decoration-none">
+                                    {{ post.title }}
+                                </a>
+                                <small class="text-muted d-block">
+                                    {{ post.published_at|date:"M d, Y" }}
+                                </small>
+                            </li>
+                            {% empty %}
+                            <li class="list-group-item">No recent posts</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Subscribe</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Stay updated with our latest blog posts</p>
+                        <form method="post" action="{% url 'blog:subscribe' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="name" class="form-control" placeholder="Your name (optional)">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -32,6 +32,7 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
     'crispy_tailwind',
     'ckeditor',
+    'ckeditor_uploader',
     'compressor',
     'debug_toolbar',
     'rest_framework',
