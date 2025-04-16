@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Testimonials{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1>Testimonials</h1>
+                <p class="lead">Here's what people are saying about their experience with our platform.</p>
+            </div>
+        </div>
+        
+        {% if testimonials %}
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 {% if testimonial.is_featured %}border-primary{% endif %}">
+                    <div class="card-body">
+                        {% if testimonial.is_featured %}
+                        <div class="badge bg-primary mb-2">Featured</div>
+                        {% endif %}
+                        <div class="mb-3">
+                            {% for i in "12345" %}
+                            <i class="fas fa-star {% if forloop.counter <= testimonial.rating %}text-warning{% else %}text-muted{% endif %}"></i>
+                            {% endfor %}
+                        </div>
+                        <p class="card-text">"{{ testimonial.content }}"</p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <div class="d-flex align-items-center">
+                            {% if testimonial.photo %}
+                            <img src="{{ testimonial.photo.url }}" class="rounded-circle me-2" alt="{{ testimonial.name }}" width="40" height="40">
+                            {% else %}
+                            <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <strong>{{ testimonial.name }}</strong>
+                                {% if testimonial.position and testimonial.organization %}
+                                <div class="small text-muted">{{ testimonial.position }}, {{ testimonial.organization }}</div>
+                                {% elif testimonial.position %}
+                                <div class="small text-muted">{{ testimonial.position }}</div>
+                                {% elif testimonial.organization %}
+                                <div class="small text-muted">{{ testimonial.organization }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="First">
+                                <span aria-hidden="true">&laquo;&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                            <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>No testimonials available at the moment.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2>Share Your Experience</h2>
+                <p class="lead mb-4">We'd love to hear about your experience with our platform. Your feedback helps us improve and inspires others.</p>
+                <a href="{% url 'core:contact' %}" class="btn btn-primary">Submit Your Testimonial</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

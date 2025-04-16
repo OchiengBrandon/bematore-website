@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Our Partners{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1>Our Partners</h1>
+                <p class="lead">We collaborate with leading organizations to deliver innovative mental health solutions.</p>
+            </div>
+        </div>
+        
+        {% if partners_by_type %}
+            {% for partner_type, partners in partners_by_type.items %}
+            <div class="mb-5">
+                <h2 class="h3 mb-4">{{ partner_type }}</h2>
+                <div class="row g-4">
+                    {% for partner in partners %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            {% if partner.logo %}
+                            <div class="card-img-top bg-white p-4 d-flex align-items-center justify-content-center" style="height: 150px;">
+                                <img src="{{ partner.logo.url }}" class="img-fluid" alt="{{ partner.name }} Logo" style="max-height: 100px;">
+                            </div>
+                            {% else %}
+                            <div class="card-img-top bg-white d-flex align-items-center justify-content-center" style="height: 150px;">
+                                <span class="h4 text-secondary">{{ partner.name }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ partner.name }}</h5>
+                                <p class="card-text">{{ partner.description|truncatewords:30 }}</p>
+                            </div>
+                            {% if partner.website %}
+                            <div class="card-footer bg-white">
+                                <a href="{{ partner.website }}" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+                                    Visit Website <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>Our partner information is coming soon.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h2>Become a Partner</h2>
+                <p class="lead">Interested in partnering with us to improve mental healthcare outcomes?</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-4">
+                        <h3 class="h4 mb-3">Partnership Benefits</h3>
+                        <ul class="mb-4">
+                            <li>Access to innovative AI mental health solutions</li>
+                            <li>Customized implementation for your specific needs</li>
+                            <li>Technical support and training</li>
+                            <li>Participation in joint research initiatives</li>
+                            <li>Marketing and promotional opportunities</li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="{% url 'core:contact' %}" class="btn btn-primary">Contact Us About Partnerships</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

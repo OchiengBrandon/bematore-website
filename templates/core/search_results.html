@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1>Search Results</h1>
+                <p class="lead">
+                    {% if query %}
+                    Showing results for: <strong>{{ query }}</strong>
+                    {% else %}
+                    Please enter a search term
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        
+        <!-- Search form -->
+        <div class="row mb-5">
+            <div class="col-md-8 col-lg-6">
+                <form action="{% url 'core:search' %}" method="get" class="d-flex">
+                    <div class="input-group">
+                        <input type="search" name="query" class="form-control" placeholder="Search..." aria-label="Search" value="{{ query|default:'' }}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search me-1"></i> Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        {% if query %}
+            {% if total_results > 0 %}
+            <div class="row mb-3">
+                <div class="col-12">
+                    <p>Found {{ total_results }} result{{ total_results|pluralize }} for "{{ query }}"</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Results -->
+            {% if faqs %}
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">FAQs ({{ faqs|length }})</h2>
+                </div>
+                <div class="list-group list-group-flush">
+                    {% for faq in faqs %}
+                    <div class="list-group-item">
+                        <h3 class="h6 mb-2">{{ faq.question }}</h3>
+                        <p class="mb-1">{{ faq.answer|truncatewords:30 }}</p>
+                        <a href="{% url 'core:faq' %}#faq-{{ faq.id }}" class="small">Read more</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Add more result sections for other models as needed -->
+            
+            {% else %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-info">
+                        <p class="mb-0">No results found for "{{ query }}". Please try different keywords or browse our <a href="{% url 'core:faq' %}">FAQ section</a>.</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% else %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-secondary">
+                    <p class="mb-0">Please enter a search term to find information across our site.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Popular searches or suggested content -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h2>You might be interested in</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Frequently Asked Questions</h3>
+                        <p>Find answers to common questions about our platform and services.</p>
+                        <a href="{% url 'core:faq' %}" class="btn btn-outline-primary btn-sm">Browse FAQs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Our Solutions</h3>
+                        <p>Learn about our AI-powered mental health solutions and how they can help you.</p>
+                        <a href="#solutions" class="btn btn-outline-primary btn-sm">Explore Solutions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Contact Support</h3>
+                        <p>Can't find what you're looking for? Our support team is here to help.</p>
+                        <a href="{% url 'core:contact' %}" class="btn btn-outline-primary btn-sm">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
