@@ -9,22 +9,22 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
-                <h1>{{ site_settings.headline|default:'AI-Powered Mental Health Support' }}</h1>
-                <p class="lead mb-4">{{ site_settings.tagline|default:'Culturally Aware. Clinically Grounded.' }}</p>
-                <p class="mb-5">{{ site_settings.site_description|default:'Bematore brings accessible mental health support to everyone through AI-powered technology that understands African contexts and global wellness needs.' }}</p>
+                <h1>Wherever You Are on the Journey, We're Here for You.</h1>
+                <p class="lead mb-4">Culturally Aware. Clinically Grounded.</p>
+                <p class="mb-5">Take a free assessment, chat anonymously, begin therapy, or connect with a professional — all in one trusted platform.</p>
                 <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a href="#get-started" class="btn btn-light btn-lg me-3">Get Started</a>
-                    <a href="{% url 'core:about' %}" class="btn btn-outline-light btn-lg">Learn More</a>
+                    <a href="#get-started" class="btn btn-primary btn-lg me-3">Start a Free Assessment</a>
+                    <a href="{% url 'core:about' %}" class="btn btn-outline-primary btn-lg">Talk to Someone Now</a>
                 </div>
             </div>
             <div class="col-lg-6">
-                <img src="{% static 'img/hero-image.png' %}" alt="Mental health support illustration" class="img-fluid rounded shadow">
+                <img src="{% static 'img/hero-illustration.png' %}" alt="Person in therapy illustration" class="img-fluid rounded shadow">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Features Section -->
+<!-- Options Section -->
 <section id="get-started" class="bg-white">
     <div class="container">
         <div class="text-center mb-5">
@@ -32,36 +32,51 @@
             <p class="lead">Simple, effective mental health support that fits into your life</p>
         </div>
         <div class="row g-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-clipboard-check fa-3x text-primary"></i>
+                        </div>
+                        <h3>Take a Mental Health Test</h3>
+                        <p>Discover what you may be experiencing with our clinically validated tools. Quick, private, and tailored to you.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">Start Assessment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="icon-wrapper mb-3">
                             <i class="fas fa-comments fa-3x text-primary"></i>
                         </div>
-                        <h3>Talk Anytime</h3>
-                        <p>Connect with our AI assistant 24/7 for immediate support, no appointment needed.</p>
+                        <h3>Chat Anonymously</h3>
+                        <p>Not ready to register? Start a private conversation with our AI and get guidance now.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">Chat Now</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="icon-wrapper mb-3">
                             <i class="fas fa-brain fa-3x text-primary"></i>
                         </div>
-                        <h3>Personalized Support</h3>
-                        <p>Receive guidance that's tailored to your unique situation and cultural context.</p>
+                        <h3>Continue Your Therapy</h3>
+                        <p>View your progress, create assessments, or schedule your next session.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">Log In</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="icon-wrapper mb-3">
                             <i class="fas fa-user-md fa-3x text-primary"></i>
                         </div>
-                        <h3>Clinical Expertise</h3>
-                        <p>All our AI responses are grounded in evidence-based therapeutic approaches.</p>
+                        <h3>Join as a Professional</h3>
+                        <p>Apply to become Bematore-accredited and connect with clients across the region.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">Apply Now</a>
                     </div>
                 </div>
             </div>
@@ -195,6 +210,11 @@
                 </div>
             </div>
             {% endfor %}
+            {% if not testimonials %}
+            <div class="col-md-12 text-center">
+                <p>"I found the free assessments very helpful in understanding where I am on my mental health journey."</p>
+            </div>
+            {% endif %}
         </div>
         <div class="text-center mt-4">
             <a href="{% url 'core:testimonials' %}" class="btn btn-outline-primary">View All Testimonials</a>
@@ -230,65 +250,6 @@
         </div>
         <div class="text-center mt-4">
             <a href="{% url 'core:team' %}" class="btn btn-outline-primary">Meet the Full Team</a>
-        </div>
-    </div>
-</section>
-
-<!-- Partners Section Preview -->
-<section class="bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2>Our Partners</h2>
-            <p class="lead">Trusted by leading organizations</p>
-        </div>
-        <div class="row align-items-center">
-            {% for partner in partners %}
-            <div class="col-md-2 col-4 mb-4 text-center">
-                {% if partner.logo %}
-                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="img-fluid grayscale">
-                {% else %}
-                <div class="bg-white p-3 rounded shadow-sm">
-                    <h6 class="mb-0">{{ partner.name }}</h6>
-                </div>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-        <div class="text-center mt-4">
-            <a href="{% url 'core:partners' %}" class="btn btn-outline-primary">View All Partners</a>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Section Preview -->
-<section class="bg-white">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2>Frequently Asked Questions</h2>
-            <p class="lead">Get answers to common questions about Bematore</p>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="accordion" id="faqAccordion">
-                    {% for faq in faqs %}
-                    <div class="accordion-item">
-                        <h3 class="accordion-header" id="heading{{ forloop.counter }}">
-                            <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
-                                {{ faq.question }}
-                            </button>
-                        </h3>
-                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                {{ faq.answer|safe }}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="text-center mt-4">
-                    <a href="{% url 'core:faq' %}" class="btn btn-outline-primary">View All FAQs</a>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -338,7 +299,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Home page specific JavaScript here
         
-        // AJAX form submission for newsletter (specific to home page)
+        // AJAX form submission for newsletter
         const homeNewsletterForm = document.getElementById('homeNewsletterForm');
         if (homeNewsletterForm) {
             homeNewsletterForm.addEventListener('submit', function(e) {
