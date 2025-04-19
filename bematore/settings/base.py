@@ -144,7 +144,7 @@ STATICFILES_FINDERS = [
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 
-Deployment settings
+#Deployment settings
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = os.environ.get('STATIC_URL', 'static/')
 STATIC_ROOT = os.environ.get('STATIC_ROOT', '/home/bematore/public_html/static')
