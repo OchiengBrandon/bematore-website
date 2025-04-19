@@ -4,7 +4,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['bematore.com', 'www.bematore.com']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS').split(',')]
 
 # Security settings
 SECURE_SSL_REDIRECT = True

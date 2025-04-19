@@ -4,7 +4,7 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bematore.com', 'www.bematore.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Debug toolbar settings
 INTERNAL_IPS = [
