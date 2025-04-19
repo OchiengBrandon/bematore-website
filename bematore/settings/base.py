@@ -127,7 +127,7 @@ USE_TZ = True
 
 # Ck upload path
 # CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
-# CKEDITOR_UPLOAD_PATH = '/home/bematore/public_html/uploads/ckeditor/'
+CKEDITOR_UPLOAD_PATH = '/home/bematore/public_html/uploads/ckeditor/'
 
 # # Static files
 # STATIC_URL = '/static/'
