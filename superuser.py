@@ -3,7 +3,7 @@ import sys
 import django
 
 # Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bematore.settings.production')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', os.environ.get('DJANGO_SETTINGS_MODULE'))
 django.setup()
 
 from django.contrib.auth import get_user_model
