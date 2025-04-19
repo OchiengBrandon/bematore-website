@@ -126,13 +126,13 @@ USE_L10N = True
 USE_TZ = True
 
 # Ck upload path
-CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
+# CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
 # CKEDITOR_UPLOAD_PATH = '/home/bematore/public_html/uploads/ckeditor/'
 
-# Static files
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# # Static files
+# STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -140,21 +140,21 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# # Media files
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
 
-# Deployment settings
-# # Static files (CSS, JavaScript, Images)
-# STATIC_URL = os.environ.get('STATIC_URL', 'static/')
-# STATIC_ROOT = os.environ.get('STATIC_ROOT', '/home/bematore/public_html/static')
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static')
-# ]
+Deployment settings
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = os.environ.get('STATIC_URL', 'static/')
+STATIC_ROOT = os.environ.get('STATIC_ROOT', '/home/bematore/public_html/static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-# # Media settings
-# MEDIA_URL = os.environ.get('MEDIA_URL', 'media/')
-# MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '/home/bematore/public_html/media')
+# Media settings
+MEDIA_URL = os.environ.get('MEDIA_URL', 'media/')
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '/home/bematore/public_html/media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
