@@ -1,4 +1,4 @@
 # requirements/production.txt
 -r base.txt
-sentry-sdk==1.39.1
+sentry-sdk==2.26.1
 gunicorn==21.2.0
