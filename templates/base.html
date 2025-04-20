@@ -421,9 +421,19 @@
             background-color: var(--bg-color-4);
         }
 
-        .site-name {
-            font-size: 5; /* Adjust this value as needed */
+        .site-logo {
+            height: 32px; /* Adjust as needed */
+            margin-right: 5px; /* Space between logo and text */
+            vertical-align: middle; /* Aligns the logo with the text */
         }
+
+        .site-name {
+            font-size: 2em; /* Adjust this value as needed */
+            color: var(--dark-color); /* Match the text color to your theme */
+            font-family: var(--font-primary);
+        }
+
+        
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -436,10 +446,9 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'core:home' %}">
                 {% if site_settings.logo %}
-                <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_name }} Logo">
-                {% else %}
-                <span class="site-name h4 mb-0">{{ site_settings.site_name|default:'Bematore' }}</span>
+                    <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_name }} Logo" class="site-logo">
                 {% endif %}
+                <span class="site-name h4 mb-0">{{ site_settings.site_name|default:'Bematore' }}</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
