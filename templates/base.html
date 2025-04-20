@@ -420,6 +420,10 @@
         .bg-color-4 {
             background-color: var(--bg-color-4);
         }
+
+        .site-name {
+            font-size: 5; /* Adjust this value as needed */
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -434,7 +438,7 @@
                 {% if site_settings.logo %}
                 <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_name }} Logo">
                 {% else %}
-                <span class="h4 mb-0">{{ site_settings.site_name|default:'Bematore' }}</span>
+                <span class="site-name h4 mb-0">{{ site_settings.site_name|default:'Bematore' }}</span>
                 {% endif %}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
