@@ -519,7 +519,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5>{{ site_settings.site_name|default:'Bematore' }}</h5>
-                    <p>{{ site_settings.tagline|default:'AI-powered. Culturally Aware. Clinically Grounded.' }}</p>
+                    <p>{{ site_settings.tagline|default:'AI-Driven. Culturally Aware. Clinically Grounded. Based on Science.' }}</p>
                     <p>{{ site_settings.site_description|default:'Your AI-driven mental health partner built for Africa and the world.' }}</p>
                 </div>
                 <div class="col-md-2 mb-4">
@@ -528,8 +528,9 @@
                         <li><a href="{% url 'core:home' %}">Home</a></li>
                         <li><a href="{% url 'core:about' %}">About</a></li>
                         <li><a href="{% url 'solutions:solution_list' %}">Solutions</a></li>
-                        <li><a href="{% url 'blog:post_list' %}">Blog</a></li>
                         <li><a href="{% url 'core:team' %}">Team</a></li>
+                        <li><a href="{% url 'core:partners' %}">Partners</a></li>
+                        <li><a href="{% url 'core:contact' %}">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-4">
