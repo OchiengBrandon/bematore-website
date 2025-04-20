@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <h1>AI-Powered Mental Health Solutions</h1>
-                <p class="lead">Explore our innovative mental health solutions designed for Africa and the world</p>
+                <h1 class="sora-bold">AI-Powered Mental Health Solutions</h1>
+                <p class="lead nunito-section">Explore our innovative mental health solutions designed for Africa and the world</p>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
 </section>
 
 <!-- Solutions Grid Section -->
-<section class="py-5" id="solutions">
+<section class="py-5 bg-color-1" id="solutions">
     <div class="container">
         {% if solutions %}
             <div class="row g-4">
@@ -55,9 +55,9 @@
                                 <div class="solution-icon me-3">
                                     <img src="{{ solution.icon.url }}" alt="{{ solution.name }} icon" width="40" height="40">
                                 </div>
-                                <h3 class="card-title h5 mb-0">{{ solution.name }}</h3>
+                                <h3 class="card-title h5 mb-0 sora-section">{{ solution.name }}</h3>
                             </div>
-                            <p class="card-text">{{ solution.description|truncatewords:20 }}</p>
+                            <p class="card-text inter-section">{{ solution.description|truncatewords:20 }}</p>
                             
                             <div class="mb-3">
                                 <span class="badge bg-primary">
@@ -127,8 +127,8 @@
                 <div class="col-12 text-center py-5">
                     <div class="py-5">
                         <i class="fas fa-search fa-4x mb-3 text-muted"></i>
-                        <h3>No solutions found</h3>
-                        <p class="text-muted">We couldn't find any solutions matching your criteria.</p>
+                        <h3 class="sora-section">No solutions found</h3>
+                        <p class="text-muted inter-section">We couldn't find any solutions matching your criteria.</p>
                         <a href="{% url 'solutions:solution_list' %}" class="btn btn-primary mt-3">View All Solutions</a>
                     </div>
                 </div>
@@ -142,8 +142,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 mx-auto text-center">
-                <h2>Ready to improve your mental wellbeing?</h2>
-                <p class="lead mb-4">Our solutions are designed to be culturally aware, clinically grounded, and easily accessible.</p>
+                <h2 class="sora-bold">Ready to improve your mental wellbeing?</h2>
+                <p class="lead mb-4 nunito-section">Our solutions are designed to be culturally aware, clinically grounded, and easily accessible.</p>
                 <button class="btn btn-light btn-lg me-2" data-bs-toggle="modal" data-bs-target="#newsletterModal">
                     <i class="fas fa-envelope me-2"></i> Subscribe to Updates
                 </button>
@@ -170,13 +170,6 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
-    }
-    
-    .hero {
-        background: linear-gradient(135deg, #0071e3 0%, #00a0ff 100%);
-        color: white;
-        text-align: center;
-        padding: 5rem 1rem;
     }
 </style>
 {% endblock %}
